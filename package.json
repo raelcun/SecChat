@@ -1,0 +1,24 @@
+{
+  "name": "sec-chat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raelcun/SecChat.git"
+  },
+  "author": "Dan Taylor",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/raelcun/SecChat/issues"
+  },
+  "homepage": "https://github.com/raelcun/SecChat#readme",
+  "dependencies": {
+    "colors": "^1.1.2",
+    "lodash": "^4.1.0",
+    "ursa": "^0.9.1"
+  }
+}
