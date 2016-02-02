@@ -3,9 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "src/app.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/raelcun/SecChat.git"
@@ -18,8 +15,16 @@
   "homepage": "https://github.com/raelcun/SecChat#readme",
   "dependencies": {
     "colors": "^1.1.2",
-    "kad": "^1.3.4",
-    "lodash": "^4.1.0",
+    "kad": "git+ssh://git@github.com/raelcun/kad-modified.git#master",
+    "lodash": "^4.2.0",
     "ursa": "^0.9.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "gulp": "^3.9.0",
+    "gulp-istanbul": "^0.10.3",
+    "gulp-jshint": "^2.0.0",
+    "gulp-mocha": "^2.2.0",
+    "jshint": "^2.9.1"
   }
 }
