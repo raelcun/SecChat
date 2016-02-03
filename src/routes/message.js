@@ -9,5 +9,14 @@ module.exports = [
 		config: {
 			response: messageValidation.find.response
 		}
+	},
+	{
+		method: 'POST',
+		path: '/messages',
+		handler: messageController.addMessage,
+		config: {
+			response: messageValidation.create.response,
+			validate: messageValidation.create.validate
+		}
 	}
 ]
