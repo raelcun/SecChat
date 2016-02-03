@@ -4,7 +4,7 @@ const gulp = require('gulp'),
 
 gulp.task('pre-lib-test', () => {
 	return gulp
-		.src(['src/**/*.js', '!src/**/test/**/*.js', '!src/lib/logger.js', '!src/app.js'])
+		.src(['src/**/*.js', '!src/**/test/**/*.js', '!src/lib/logger.js', '!src/app.js', '!src/validate/**/*.js', '!src/routes/**/*.js', '!src/controllers/**/*.js'])
 		.pipe(istanbul({ includeUntested: true }))
 		.pipe(istanbul.hookRequire());
 })

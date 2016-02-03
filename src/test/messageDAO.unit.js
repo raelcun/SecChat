@@ -1,12 +1,12 @@
 const expect = require('chai').expect,
 			_ = require('lodash'),
 			db = require('../dao/db'),
-			message = require('../dao/message')(db, 'testMessages'),
+			message = require('../dao/message')(db.db, 'testMessages'),
 			Promise = require('bluebird');
 
 const tableExists = (tableName) => {
 	return new Promise((resolve, reject) => {
-		db
+		db.db
 			.allAsync(`SELECT name FROM sqlite_master WHERE type="table" AND name=?`, message.tableName)
 			.then((results) => resolve(results.length > 0))
 			.catch((err) => reject(err))
@@ -23,7 +23,7 @@ describe('message DAO', () => {
 	})
 
 	after((done) => {
-		message.closeDB().then(() => done());
+		db.closeDB().then(() => done());
 	})
 
 	describe('#dropTable', () => {
