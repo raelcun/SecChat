@@ -7,6 +7,9 @@
     "type": "git",
     "url": "git+https://github.com/raelcun/SecChat.git"
   },
+  "scripts": {
+    "start": "node src/app.js"
+  },
   "author": "Dan Taylor",
   "license": "MIT",
   "bugs": {
@@ -14,9 +17,13 @@
   },
   "homepage": "https://github.com/raelcun/SecChat#readme",
   "dependencies": {
+    "bluebird": "^3.2.1",
     "colors": "^1.1.2",
     "kad": "git+ssh://git@github.com/raelcun/kad-modified.git#master",
     "lodash": "^4.2.0",
+    "moment": "^2.11.1",
+    "sqlite3": "^3.1.1",
+    "thenify": "^3.2.0",
     "ursa": "^0.9.1"
   },
   "devDependencies": {

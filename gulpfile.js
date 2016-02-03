@@ -4,14 +4,14 @@ const gulp = require('gulp'),
 
 gulp.task('pre-lib-test', () => {
 	return gulp
-		.src(['src/lib/**/*.js', '!src/lib/test/*.js', '!src/lib/logger.js'])
+		.src(['src/**/*.js', '!src/**/test/**/*.js', '!src/lib/logger.js', '!src/app.js'])
 		.pipe(istanbul({ includeUntested: true }))
 		.pipe(istanbul.hookRequire());
 })
 
 gulp.task('test', ['pre-lib-test'], () => {
 	return gulp
-		.src('src/lib/test/*.js')
+		.src(['src/lib/test/*.js', 'src/test/*.js'])
 		.pipe(mocha())
 		.pipe(istanbul.writeReports())
 		.pipe(istanbul.enforceThresholds({ thresholds: { global: 90 }}));
