@@ -18,7 +18,10 @@
   "homepage": "https://github.com/raelcun/SecChat#readme",
   "dependencies": {
     "bluebird": "^3.2.1",
+    "boom": "^3.1.2",
     "colors": "^1.1.2",
+    "hapi": "^13.0.0",
+    "joi": "^7.2.3",
     "kad": "git+ssh://git@github.com/raelcun/kad-modified.git#master",
     "lodash": "^4.2.0",
     "moment": "^2.11.1",

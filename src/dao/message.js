@@ -55,10 +55,6 @@ module.exports = (db, tableName) => {
 				from_username: from_username,
 				date_received: date_received
 			}
-		},
-
-		closeDB: closeDB = () => {
-			return db.closeAsync();
 		}
 	}
 }
