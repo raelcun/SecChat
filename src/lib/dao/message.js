@@ -1,6 +1,6 @@
 const sqlite = require('sqlite3')
 			moment = require('moment'),
-			utils = require('../lib/utils'),
+			utils = require('../utils'),
 			assert = require('assert'),
 			Promise = require('bluebird');
 

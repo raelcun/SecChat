@@ -2,8 +2,8 @@ const hapi = require('hapi'),
 			boom = require('boom'),
 			config = require('./config'),
 			logger = require('./lib/logger')(),
-			db = require('./dao/db'),
-			message = require('./dao/message')(db);
+			db = require('./lib/dao/db'),
+			message = require('./lib/dao/message')(db);
 
 const server = new hapi.Server();
 server.connection(config.server);

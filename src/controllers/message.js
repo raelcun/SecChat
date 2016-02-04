@@ -1,6 +1,6 @@
 const boom = require('boom'),
-			db = require('../dao/db').db,
-			message = require('../dao/message')(db);
+			db = require('../lib/dao/db').db,
+			message = require('../lib/dao/message')(db);
 
 module.exports = {
 	getAllMessages: (request, reply) => {
