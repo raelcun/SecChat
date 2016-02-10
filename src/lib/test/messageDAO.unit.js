@@ -1,89 +1,58 @@
-const expect = require('chai').expect,
-			_ = require('lodash'),
-			db = require('../dao/db'),
-			message = require('../dao/message')(db.db, 'testMessages'),
-			Promise = require('bluebird');
+// const test = require('./common'),
+// 			expect = require('chai').expect,
+// 			_ = require('lodash');
 
-const tableExists = (tableName) => {
-	return new Promise((resolve, reject) => {
-		db.db
-			.allAsync(`SELECT name FROM sqlite_master WHERE type="table" AND name=?`, message.tableName)
-			.then((results) => resolve(results.length > 0))
-			.catch((err) => reject(err))
-	})
-}
+// describe('message DAO', () => {
 
-describe('message DAO', () => {
+// 	/* drop the messages table and recreate it so each
+// 	 * test is run in a controlled environment */
+// 	beforeEach(done => {
+// 		test.message
+// 			.dropTable()
+// 			.then(() => test.message.createTable())
+// 			.tap(done);
+// 	})
 
-	beforeEach((done) => {
-		message
-			.dropTable()
-			.then(() => message.createTable())
-			.then(() => done());
-	})
+// 	it('#dropTable: should remove the table', done => {
+// 		test
+// 			.tableExists(test.message.tableName, true) // expect table to exist
+// 			.then(test.message.dropTable()) // drop the table
+// 			.then(test.tableExists(test.message.tableName, false)) // expect table to not exist
+// 			.tap(done)
+// 	})
 
-	after((done) => {
-		db.closeDB().then(() => done());
-	})
+// 	it('#createTable: should create the table', done => {
+// 		test.message
+// 			.dropTable() // drop table
+// 			.then(test.tableExists(test.message.tableName, false)) // expect table to not exist
+// 			.then(test.message.createTable()) // create table
+// 			.then(test.tableExists(test.message.tableName, true)) // expect table to exist
+// 			.tap(done);
+// 	})
 
-	describe('#dropTable', () => {
-		it('should remove the table', (done) => {
-			tableExists(message.tableName)
-				.then((result) => expect(result).to.equal(true))
-				.then(() => message.dropTable())
-				.then(() => {
-					tableExists(message.tableName).then((result) => {
-						expect(result).to.equal(false);
-						done();
-					})
-				})
-		})
-	})
+// 	it('#clearMessages: should remove all records', done => {
+// 		test.message
+// 			.addMessage(test.message.generateMessage(1, 'test message', 'eli parkinsons'))
+// 			.then(() => {
+// 				message.getMessages().then((results) => expect(results.length).to.equal(1));
+// 			}).then(() => message.clearMessages())
+// 			.then(() => {
+// 				message.getMessages().then((results) => expect(results.length).to.equal(0)).then(() => done());
+// 			})
+// 	})
 
-	describe('#createTable', () => {
-		it('should create the table', (done) => {
-			message
-				.dropTable()
-				.then(() => {
-					tableExists(message.tableName).then((result) => expect(result).to.equal(false))
-				})
-				.then(() => message.createTable())
-				.then(() => {
-					tableExists(message.tableName).then((result) => {
-						expect(result).to.equal(true);
-						done();
-					})
-				})
-		})
-	})
+// 	it('#addMessage/getMessages: should be able to retrieve added message', done => {
+// 		testMessage = message.generateMessage(1, 'test message', 'eli park');
+// 		message
+// 			.addMessage(testMessage)
+// 			.then(() => {
+// 				message.getMessages().then((results) => {
+// 					expect(results.length).to.equal(1);
+// 					compareProperty = (propertyName) => { return testMessage[propertyName] === results[0][propertyName]; }
+// 					['message_id', 'message', 'from_username', 'date_received'].map(e => compareProperty(e)).forEach(e => expect(e).to.equal(true));
+// 					done();
+// 				})
+// 			})
+// 	})
 
-	describe('#clearMessages', () => {
-		it('should remove all records', (done) => {
-			message
-				.addMessage(message.generateMessage(1, 'test message', 'eli park'))
-				.then(() => {
-					message.getMessages().then((results) => expect(results.length).to.equal(1));
-				}).then(() => message.clearMessages())
-				.then(() => {
-					message.getMessages().then((results) => expect(results.length).to.equal(0)).then(() => done());
-				})
-		})
-	})
-
-	describe('#addMessage/getMessages', () => {
-		it('should be able to retrieve added message', (done) => {
-			testMessage = message.generateMessage(1, 'test message', 'eli park');
-			message
-				.addMessage(testMessage)
-				.then(() => {
-					message.getMessages().then((results) => {
-						expect(results.length).to.equal(1);
-						compareProperty = (propertyName) => { return testMessage[propertyName] === results[0][propertyName]; }
-						['message_id', 'message', 'from_username', 'date_received'].map((e) => compareProperty(e)).forEach((e) => expect(e).to.equal(true));
-						done();
-					})
-				})
-		})
-	})
-
-})
+// })

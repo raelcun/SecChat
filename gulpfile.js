@@ -15,7 +15,7 @@ gulp.task('pre-lib-test', () => {
 gulp.task('test', ['pre-lib-test'], () => {
 	return gulp
 		.src(['src/lib/test/*.js'])
-		.pipe(mocha())
+		.pipe(mocha({ timeout: 200000 }))
 		.pipe(istanbul.writeReports())
 		.pipe(istanbul.enforceThresholds({ thresholds: { global: 90 }}));
 })

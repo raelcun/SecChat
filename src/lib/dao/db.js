@@ -2,17 +2,17 @@ const sqlite = require('sqlite3'),
 			config = require('../../config');
 require('bluebird').promisifyAll(sqlite);
 
-const db = new sqlite.Database(config.dbPath),
-			message = require('./message')(db);
-
 module.exports = {
-	db: db,
+	getDB: (initialize) => {
+		var db = new sqlite.Database(config.dbPath);
 
-	init: () => {
-		return message.createTable()
-	},
+		if (initialize === true) {
+			const message = require('./message')(db);
+			const user = require('./user')(db);
+			message.createTable();
+			user.createTable();
+		}
 
-	closeDB: closeDB = () => {
-		return db.closeAsync();
+		return db
 	}
 }
