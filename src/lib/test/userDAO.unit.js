@@ -34,7 +34,7 @@ describe('user DAO', () => {
 		})
 	})
 
-	describe('#clearUsers', done => {
+	describe('#clearAllUsers', done => {
 		it('should remove all users', done => {
 			test.user
 				.addUser(test.user.generateUser('eli parkinsons', 'mr_parkinsons_public_key'))
