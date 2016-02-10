@@ -36,8 +36,7 @@ module.exports = (db, tableName) => {
 
 		getUserByName: (username) => {
 			assert(typeof username === 'string', 'username must be a string');
-			const results = db.allAsync(`SELECT TOP 1 * FROM ${tableName} WHERE username = ?`, username);
-			return results.length === 0 ? null : results[0];
+			return db.allAsync(`SELECT * FROM ${tableName} WHERE username = ? LIMIT 1`, username);
 		},
 
 		getAllUsers: () => {

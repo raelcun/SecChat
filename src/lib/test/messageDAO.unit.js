@@ -13,7 +13,7 @@ describe('message DAO', () => {
 			.then(() => done());
 	})
 
-	describe('#dropTable', done => {
+	describe('#dropTable', () => {
 		it('should remove the table', done => {
 			test
 				.tableExists(test.message.tableName, true)
@@ -23,7 +23,7 @@ describe('message DAO', () => {
 		})
 	})
 
-	describe('#createTable', done => {
+	describe('#createTable', () => {
 		it('should create the table', done => {
 			test.message
 				.dropTable()
@@ -34,7 +34,7 @@ describe('message DAO', () => {
 		})
 	})
 
-	describe('#clearMessages', done => {
+	describe('#clearMessages', () => {
 		it('should remove all messages', done => {
 			test.message
 				.addMessage(test.message.generateMessage(1, 'test message', 'elijah min-jun'))
@@ -47,7 +47,7 @@ describe('message DAO', () => {
 		})
 	})
 
-	describe('#addMessage/getMessages', done => {
+	describe('#addMessage/getMessages', () => {
 		it('#addMessage/getMessages: should be able to retrieve added message', done => {
 			testMessage = test.message.generateMessage(1, 'oh, how I miss my old country', 'eli min-jun');
 			test.message
