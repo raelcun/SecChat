@@ -2,8 +2,11 @@ const hapi = require('hapi'),
 			boom = require('boom'),
 			config = require('./config'),
 			logger = require('./lib/logger')(),
-			db = require('./lib/dao/db'),
-			message = require('./lib/dao/message')(db);
+			db = require('./lib/dao/db').getDB(),
+			message = require('./lib/dao/message')(db),
+			argv = require('yargs').argv
+
+if (argv.port) config.port = argv.port
 
 const server = new hapi.Server();
 server.connection(config.server);
@@ -18,22 +21,24 @@ server.ext('onPreResponse', (request, reply) => {
 
 // gracefully disconnect from db when server is killed
 gracefulDBClose = () => {
-	db.db.closeAsync().then(() => {
+	db.closeAsync().then(() => {
 		logger.warn('SQLite connection terminated due to app termination')
 		process.exit(0);
 	})
 }
 process.on('SIGINT', gracefulDBClose).on('SIGTERM', gracefulDBClose);
 
-db
-	.init()
-	.then(() => {
-		server.register([], (err) => {
-			require('./routes')(server);
+server.register([], (err) => {
+	require('./routes')(server);
 
-			server.start(() => logger.info(`web interface started at http://${config.server.host}:${config.server.port}`))
+	require('./lib/node').then(node => {
+		node.setViewer(command => {
+			console.log(command)
 		})
+		
+		server.start(() => logger.info(`web interface started at http://${config.server.host}:${config.server.port}`))
 	})
+})
 
 module.exports = server;
 
