@@ -7,6 +7,7 @@ const hapi = require('hapi'),
 			argv = require('yargs').argv
 
 if (argv.port) config.port = argv.port
+if (argv.username) config.username = argv.username
 
 const server = new hapi.Server();
 server.connection(config.server);
@@ -32,10 +33,12 @@ server.register([], (err) => {
 	require('./routes')(server);
 
 	require('./lib/node').then(node => {
-		node.setViewer(command => {
-			if (command.strCommand === 'MESSAGE') {
-				// TODO: message things
-			}
+		node.setViewer(msg => {
+			console.log(msg)
+			message.addMessage(msg)
+			// if (command.strCommand === 'MESSAGE') {
+			// 	// TODO: message things
+			// }
 		})
 		
 		server.start(() => logger.info(`web interface started at http://${config.server.host}:${config.server.port}`))
