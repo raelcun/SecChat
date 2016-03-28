@@ -33,7 +33,9 @@ server.register([], (err) => {
 
 	require('./lib/node').then(node => {
 		node.setViewer(command => {
-			console.log(command)
+			if (command.strCommand === 'MESSAGE') {
+				// TODO: message things
+			}
 		})
 		
 		server.start(() => logger.info(`web interface started at http://${config.server.host}:${config.server.port}`))
