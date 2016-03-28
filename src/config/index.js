@@ -3,12 +3,12 @@ module.exports = {
 
 	node: {
 		username: '0',
-		ip: 'localhost',
+		ip: '0.0.0.0',
 		port: 3000
 	},
 
 	server: {
-		host: 'localhost',
+		host: '0.0.0.0',
 		port: 9000,
 		routes: { cors: true }
 	}

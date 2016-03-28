@@ -1,5 +1,4 @@
-const sqlite = require('sqlite3')
-			moment = require('moment'),
+const	moment = require('moment'),
 			utils = require('../utils'),
 			assert = require('assert'),
 			Promise = require('bluebird');

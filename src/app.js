@@ -2,7 +2,7 @@ const hapi = require('hapi'),
 			boom = require('boom'),
 			config = require('./config'),
 			logger = require('./lib/logger')(),
-			db = require('./lib/dao/db').getDB(),
+			db = require('./lib/dao/db').getDB(true),
 			message = require('./lib/dao/message')(db),
 			argv = require('yargs').argv
 

@@ -1,5 +1,5 @@
 const boom = require('boom'),
-			db = require('../lib/dao/db').db,
+			db = require('../lib/dao/db').getDB(),
 			message = require('../lib/dao/message')(db);
 
 module.exports = {
