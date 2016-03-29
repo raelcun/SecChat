@@ -19,6 +19,7 @@ module.exports = (db, tableName) => {
 			    "message_id" INTEGER,
 			    "message" TEXT,
 			    "from_username" INTEGER,
+          "to_username" INTEGER,
 			    "date_received" INTEGER
 				)`
 			);
@@ -30,8 +31,11 @@ module.exports = (db, tableName) => {
 
 		addMessage: (message) => {
 			return db.runAsync(
-				`INSERT INTO main.${tableName} (message_id, message, from_username, date_received) VALUES (?, ?, ?, ?)`,
-				message.message_id, message.message, message.from_username, message.date_received);
+				`INSERT INTO main.${tableName} (message_id, message, from_username, 
+to_username, date_received) VALUES (?, ?, ?, ?, ?)`,
+				message.message_id, message.message, message.from_username, 
+message.to_username, 
+message.date_received);
 		},
 
 		getMessages: (startingId) => {
