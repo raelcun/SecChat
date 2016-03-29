@@ -19,6 +19,13 @@ module.exports = {
 
   sendMessage: (request, reply) => {
     console.log(request.payload);
-    reply({ result: 'elijah parkinsons' });
+
+    require('../lib/node').then(node => {
+      message.addMessage({ from_username: node.username, message: 
+request.payload.message.message, date_received: Date.now() })
+			node.sendMessage(request.payload.message.to_username, 
+request.payload.message.message)
+			reply({ result: 'eli parkinsons' })
+    })
   }
 }
