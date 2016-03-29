@@ -5,18 +5,16 @@ module.exports = [
 	{
 		method: 'GET',
 		path: '/messages',
-		handler: messageController.getAllMessages,
-		config: {
-			response: messageValidation.find.response
-		}
+		handler: messageController.getAllMessages
 	},
 	{
 		method: 'POST',
 		path: '/messages',
 		handler: messageController.addMessage,
-		config: {
-			response: messageValidation.create.response,
-			validate: messageValidation.create.validate
-		}
-	}
+	},
+  {
+    method: 'POST',
+    path: '/sendMessage',
+    handler: messageController.sendMessage
+  }
 ]
