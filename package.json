@@ -20,7 +20,7 @@
     "bluebird": "^3.3.4",
     "boom": "^3.1.2",
     "colors": "^1.1.2",
-    "ded-network": "git+https://github.com/raelcun/ded-network.git#rewrite_with_eli",
+    "ded-network": "git+https://github.com/raelcun/ded-network.git",
     "hapi": "^13.2.2",
     "joi": "^8.0.5",
     "lodash": "^4.6.1",

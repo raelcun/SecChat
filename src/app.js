@@ -4,10 +4,13 @@ const hapi = require('hapi'),
 			logger = require('./lib/logger')(),
 			db = require('./lib/dao/db').getDB(true),
 			message = require('./lib/dao/message')(db),
+			//node = require('./lib/node'),
 			argv = require('yargs').argv
 
-if (argv.port) config.port = argv.port
-if (argv.username) config.username = argv.username
+if (argv.port) config.node.port = argv.port
+if (argv.username) config.node.username = argv.username
+if (argv.publicKey) config.node.publicKey = argv.publicKey
+if (argv.privateKey) config.node.privateKey = argv.privateKey
 
 const server = new hapi.Server();
 server.connection(config.server);
@@ -33,14 +36,16 @@ server.register([], (err) => {
 	require('./routes')(server);
 
 	require('./lib/node').then(node => {
+		if (node.id !== config.ded_server.id) node.connect(config.ded_server);
+		node.sendMessage('server', 'test');
+
 		node.setViewer(msg => {
-			console.log(msg)
 			message.addMessage(msg)
 			// if (command.strCommand === 'MESSAGE') {
 			// 	// TODO: message things
 			// }
 		})
-		
+
 		server.start(() => logger.info(`web interface started at http://${config.server.host}:${config.server.port}`))
 	})
 })
