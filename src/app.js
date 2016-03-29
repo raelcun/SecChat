@@ -11,6 +11,7 @@ if (argv.port) config.node.port = argv.port
 if (argv.username) config.node.username = argv.username
 if (argv.publicKey) config.node.publicKey = argv.publicKey
 if (argv.privateKey) config.node.privateKey = argv.privateKey
+if (argv.serverPort) config.server.port = argv.serverPort
 
 const server = new hapi.Server();
 server.connection(config.server);
@@ -37,7 +38,7 @@ server.register([], (err) => {
 
 	require('./lib/node').then(node => {
 		if (node.id !== config.ded_server.id) node.connect(config.ded_server);
-		node.sendMessage('server', 'test');
+		//node.sendMessage('server', 'test');
 
 		node.setViewer(msg => {
 			console.log('received', msg)
