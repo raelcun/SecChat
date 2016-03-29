@@ -15,5 +15,10 @@ module.exports = {
 			.addMessage(message.generateMessage(request.payload.message_id, request.payload.message, request.payload.from_username, request.payload.date_received))
 			.then(() => reply({ result: true }))
 			.catch(err => reply(boom.wrap(err)))
-	}
+	},
+
+  sendMessage: (request, reply) => {
+    console.log(request.payload);
+    reply({ result: 'elijah parkinsons' });
+  }
 }

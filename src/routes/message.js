@@ -18,5 +18,10 @@ module.exports = [
 			response: messageValidation.create.response,
 			validate: messageValidation.create.validate
 		}
-	}
+	},
+  {
+    method: 'POST',
+    path: '/sendMessage',
+    handler: messageController.sendMessage
+  }
 ]
