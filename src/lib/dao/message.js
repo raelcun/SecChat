@@ -31,11 +31,8 @@ module.exports = (db, tableName) => {
 
 		addMessage: (message) => {
 			return db.runAsync(
-				`INSERT INTO main.${tableName} (message_id, message, from_username, 
-to_username, date_received) VALUES (?, ?, ?, ?, ?)`,
-				message.message_id, message.message, message.from_username, 
-message.to_username, 
-message.date_received);
+				`INSERT INTO main.${tableName} (message_id, message, from_username, to_username, date_received) VALUES (?, ?, ?, ?, ?)`,
+				message.message_id, message.message, message.from_username, message.to_username, message.date_received);
 		},
 
 		getMessages: (startingId) => {
@@ -43,18 +40,20 @@ message.date_received);
 			return db.allAsync(`SELECT * FROM ${tableName} WHERE id > ?`, startingId);
 		},
 
-		generateMessage: (message_id, message, from_username, date_received) => {
+		generateMessage: (message_id, message, from_username, to_username, date_received) => {
 			date_received = date_received || moment().utc().valueOf();
 
 			assert(utils.isInteger(message_id), 'message id must be an integer');
 			assert(typeof message === 'string', 'message must be a string');
 			assert(typeof from_username === 'string', 'from username must be a string');
+			assert(typeof to_username === 'string', 'to username must be a string');
 			assert(utils.isInteger(date_received), 'message reception date is not a valid unix timestamp');
 
 			return {
 				id: undefined,
 				message_id: message_id,
 				message: message,
+				to_username: to_username,
 				from_username: from_username,
 				date_received: date_received
 			}

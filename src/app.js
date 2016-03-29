@@ -40,6 +40,7 @@ server.register([], (err) => {
 		node.sendMessage('server', 'test');
 
 		node.setViewer(msg => {
+			console.log('received', msg)
 			message.addMessage(msg)
 			// if (command.strCommand === 'MESSAGE') {
 			// 	// TODO: message things

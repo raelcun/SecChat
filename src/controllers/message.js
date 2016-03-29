@@ -12,7 +12,7 @@ module.exports = {
 
 	addMessage: (request, reply) => {
 		message
-			.addMessage(message.generateMessage(request.payload.message_id, request.payload.message, request.payload.from_username, request.payload.date_received))
+			.addMessage(message.generateMessage(request.payload.message_id, request.payload.message, request.payload.from_username, request.payload.to_username, request.payload.date_received))
 			.then(() => reply({ result: true }))
 			.catch(err => reply(boom.wrap(err)))
 	},

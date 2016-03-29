@@ -37,7 +37,7 @@ describe('message DAO', () => {
 	describe('#clearMessages', () => {
 		it('should remove all messages', done => {
 			test.message
-				.addMessage(test.message.generateMessage(1, 'test message', 'elijah min-jun'))
+				.addMessage(test.message.generateMessage(1, 'test message', 'elijah min-jun', 'elijah parkinsons'))
 				.then(() => test.message.getMessages())
 				.then(results => expect(results.length).to.equal(1))
 				.then(() => test.message.clearMessages())
@@ -49,13 +49,13 @@ describe('message DAO', () => {
 
 	describe('#addMessage/getMessages', () => {
 		it('#addMessage/getMessages: should be able to retrieve added message', done => {
-			testMessage = test.message.generateMessage(1, 'oh, how I miss my old country', 'eli min-jun');
+			testMessage = test.message.generateMessage(1, 'oh, how I miss my old country', 'eli min-jun', 'elijah parkinsons');
 			test.message
 				.addMessage(testMessage)
 				.then(() => test.message.getMessages())
 				.then(results => {
 						expect(results.length).to.equal(1);
-						['message_id', 'message', 'from_username', 'date_received'].map(e => test.compareProperty(results[0], testMessage, e)).forEach(e => expect(e).to.equal(true));
+						['message_id', 'message', 'from_username', 'to_username', 'date_received'].map(e => test.compareProperty(results[0], testMessage, e)).forEach(e => expect(e).to.equal(true));
 						done();
 				})
 		})
